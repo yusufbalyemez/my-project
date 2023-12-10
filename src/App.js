@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './style.css'; // Stil dosyasını içe aktar
 
 const ModuloResult = () => {
   const [inputValue, setInputValue] = useState('');
@@ -8,26 +9,40 @@ const ModuloResult = () => {
     const value = e.target.value;
     setInputValue(value);
 
-    // Girilen değeri sayıya çevirip 19'a bölümünden kalanı hesapla
-    const result = parseInt(value) % 19;
-    setModuloResult(result);
+
+  function mod(num, a) {
+      let res = 0;
+      const numStr = num.toString();
+  
+      for (let i = 0; i < numStr.length; i++) {
+          res = (res * 10 + parseInt(numStr[i], 10)) % a;
+      }
+  
+      return res;
+  }
+
+  // Girilen değeri sayıya çevirip 19'a bölümünden kalanı hesapla
+  const result = mod(value, 19);
+  setModuloResult(result);
   };
 
   return (
-    <div className="w-400 h-300 bg-blue-500 rounded-full flex flex-col items-center justify-center">
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        className="p-4 bg-white rounded-full outline-none mb-4"
-        placeholder="Bir sayı girin"
-      />
-      {moduloResult !== null && (
-        <div className="text-white">
-          {`Girilen sayının 19'a bölümünden kalan: ${moduloResult}`}
-        </div>
-      )}
+    <div className="flex items-center justify-center h-screen" >
+      <div className="bg-blue-500 flex flex-col items-center justify-center w-[600px] h-[300px] rounded-md custom-shadow p-10">
+        <input
+          value={inputValue}
+          onChange={handleInputChange}
+          className="p-4 bg-white rounded-md outline-none mb-4 w-full"
+          placeholder="Modunu Almak İstediğiniz Bir sayı girin"
+        />
+        {moduloResult !== null && (
+          <div className="text-white">
+            {`Girilen sayının 19'a bölümünden kalan: ${moduloResult}`}
+          </div>
+        )}
+      </div>
     </div>
+
   );
 };
 

@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+const ModuloResult = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [moduloResult, setModuloResult] = useState(null);
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+
+    // Girilen değeri sayıya çevirip 19'a bölümünden kalanı hesapla
+    const result = parseInt(value) % 19;
+    setModuloResult(result);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-400 h-300 bg-blue-500 rounded-full flex flex-col items-center justify-center">
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        className="p-4 bg-white rounded-full outline-none mb-4"
+        placeholder="Bir sayı girin"
+      />
+      {moduloResult !== null && (
+        <div className="text-white">
+          {`Girilen sayının 19'a bölümünden kalan: ${moduloResult}`}
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default App;
+export default ModuloResult;

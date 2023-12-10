@@ -33,7 +33,7 @@ const ModuloResult = () => {
           value={inputValue}
           onChange={handleInputChange}
           className="p-4 bg-white rounded-md outline-none mb-4 w-full"
-          placeholder="Modunu Almak İstediğiniz Bir sayı girin"
+          placeholder="Modunu Almak İstediğiniz Bir Sayı Girin"
         />
         {moduloResult !== null && (
           <div className="text-white">
